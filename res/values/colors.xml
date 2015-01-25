@@ -116,6 +116,8 @@
     <color name="exposed_recents_list_footer_bg">#ffffffff</color>
     <color name="exposed_dialpad_fragment">#00000000</color>
     <color name="exposed_switches">#0288d1</color>
+    <color name="exposed_primary_color_dark">#0277bd</color>
+    
 
     <!-- Text color for no favorites message -->
     <color name="nofavorite_text_color">#777777</color>
