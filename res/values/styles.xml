@@ -66,7 +66,6 @@
         <item name="call_log_primary_background_color">@color/exposed_bg_light</item>
         <item name="call_log_secondary_text_color">@color/dialtacts_secondary_text_color</item>
         <item name="call_log_secondary_background_color">@color/exposed_secondary_bg_color</item>
-        <item name="call_log_header_color">@color/exposed_call_log_header</item>
         <!-- VoicemailStatus -->
         <item name="call_log_voicemail_status_height">48dip</item>
 	<!-- exposed textcolor and bg for theming  -->
@@ -136,7 +135,6 @@
 	<!-- exposed  bg for theming  -->
         <item name="call_log_primary_background_color">@color/exposed_bg_dark</item>
         <item name="call_log_secondary_background_color">@color/exposed_bg_dark</item>
-        <item name="call_log_header_color">@color/exposed_bg_dark</item>
         <!-- VoicemailStatus -->
 	<!-- exposed bg for theming  -->
         <item name="call_log_voicemail_status_height">48dip</item>
