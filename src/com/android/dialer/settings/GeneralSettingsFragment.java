@@ -16,8 +16,12 @@
 
 package com.android.dialer.settings;
 
+import android.app.DialogFragment;
+import android.app.VibrationPickerDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.media.RingtoneManager;
+import android.media.VibrationPattern;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -41,6 +45,7 @@ import java.lang.Override;
 import java.lang.Runnable;
 import java.lang.String;
 import java.lang.Thread;
+import java.net.URI;
 import java.util.Locale;
 
 public class GeneralSettingsFragment extends PreferenceFragment
@@ -50,6 +55,7 @@ public class GeneralSettingsFragment extends PreferenceFragment
             "dialer_general_incall_vibration_category_key";
     private static final String BUTTON_RINGTONE_KEY    = "button_ringtone_key";
     private static final String BUTTON_VIBRATE_ON_RING = "button_vibrate_on_ring";
+    private static final String BUTTON_VIBRATION_KEY = "button_vibration_key";
     private static final String BUTTON_PLAY_DTMF_TONE  = "button_play_dtmf_tone";
     private static final String BUTTON_RESPOND_VIA_SMS_KEY = "button_respond_via_sms_key";
     private static final String BUTTON_SPEED_DIAL_KEY  = "speed_dial_settings";
@@ -58,10 +64,13 @@ public class GeneralSettingsFragment extends PreferenceFragment
     public static final String BUTTON_SMART_MUTE_KEY = "button_smart_mute";
 
     private static final int MSG_UPDATE_RINGTONE_SUMMARY = 1;
+    private static final int VIB_OK = 10;
+    private static final int VIB_CANCEL = 11;
 
     private Context mContext;
 
     private Preference mRingtonePreference;
+    private Preference mVibrationPreference;
     private SwitchPreference mVibrateWhenRinging;
     private SwitchPreference mPlayDtmfTone;
     private Preference mRespondViaSms;
@@ -82,6 +91,18 @@ public class GeneralSettingsFragment extends PreferenceFragment
                 case MSG_UPDATE_RINGTONE_SUMMARY:
                     mRingtonePreference.setSummary((CharSequence) msg.obj);
                     break;
+                case VIB_OK:
+                    VibrationPattern mPattern = (VibrationPattern) msg.obj;
+                    if (mPattern == null) {
+                        break;
+                    }
+                    mVibrationPreference.setSummary(mPattern.getName());
+                    Settings.System.putString(getContentResolver(),
+                            Settings.System.PHONE_VIBRATION, mPattern.getUri().toString());
+                    break;
+                case VIB_CANCEL:
+                default:
+                    break;
             }
         }
     };
@@ -95,6 +116,7 @@ public class GeneralSettingsFragment extends PreferenceFragment
         addPreferencesFromResource(R.xml.general_settings);
 
         mRingtonePreference = findPreference(BUTTON_RINGTONE_KEY);
+	mVibrationPreference = findPreference(BUTTON_VIBRATION_KEY);
         mVibrateWhenRinging = (SwitchPreference) findPreference(BUTTON_VIBRATE_ON_RING);
         mPlayDtmfTone = (SwitchPreference) findPreference(BUTTON_PLAY_DTMF_TONE);
         mRespondViaSms = findPreference(BUTTON_RESPOND_VIA_SMS_KEY);
@@ -104,7 +126,7 @@ public class GeneralSettingsFragment extends PreferenceFragment
         PreferenceCategory soundCategory = (PreferenceCategory) findPreference(CATEGORY_SOUNDS_KEY);
         Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
         boolean hasVibrator = vibrator != null && vibrator.hasVibrator();
-
+	lookupVibrationName();
         if (mVibrateWhenRinging != null) {
             if (hasVibrator) {
                 mVibrateWhenRinging.setOnPreferenceChangeListener(this);
@@ -172,6 +194,12 @@ public class GeneralSettingsFragment extends PreferenceFragment
         } else if (preference == mRespondViaSms || preference == mSpeedDialSettings) {
             // Needs to return false for the intent to launch.
             return false;
+        } else if (preference == mVibrationPreference) {
+            String uriString = VibrationPattern.getPhoneVibration(getApplicationContext());
+            DialogFragment newFragment = VibrationPickerDialog.newInstance(mRingtoneLookupComplete, false,
+                        uriString);
+            newFragment.show(getFragmentManager(), "dialog");
+            return true;
         }
         return true;
     }
@@ -186,6 +214,7 @@ public class GeneralSettingsFragment extends PreferenceFragment
 
         // Lookup the ringtone name asynchronously.
         new Thread(mRingtoneLookupRunnable).start();
+	lookupVibrationName();
     }
 
     private void saveT9SearchInputLocale(Preference preference, String newT9Locale) {
@@ -223,4 +252,10 @@ public class GeneralSettingsFragment extends PreferenceFragment
         mT9SearchInputLocale.setEntries(entries);
         mT9SearchInputLocale.setEntryValues(values);
     }
+
+    private void lookupVibrationName() {
+        String uriString = VibrationPattern.getPhoneVibration(getApplicationContext());
+        mVibrationPreference.setSummary(new VibrationPattern(Uri.parse(uriString), getApplicationContext()).getName());
+    }
+
 }
