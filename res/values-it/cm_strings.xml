@@ -66,8 +66,8 @@
   <string name="call_stats_reset_filter">Reimposta intervallo</string>
   <string name="call_stats_sort_by_duration">Ordina per durata</string>
   <string name="call_stats_sort_by_count">Ordina per numero</string>
-  <string name="menu_add_to_blacklist">Aggiungi all\'elenco chiamanti bloccati</string>
-  <string name="toast_added_to_blacklist">%s aggiunto alla lista chiamanti bloccati.</string>
+  <string name="menu_add_to_blacklist">Aggiungi all\'elenco bloccati</string>
+  <string name="toast_added_to_blacklist">%s aggiunto alla lista bloccati.</string>
   <string name="speed_dial_settings">Impostazioni composizione rapida</string>
   <string name="speed_dial_not_set">(non impostato)</string>
   <string name="speed_dial_replace">Sostituisci</string>
@@ -97,8 +97,8 @@
   <string name="stop_call_playback">Ferma</string>
   <string name="call_playback_error_message">Impossibile riprodurre la registrazione</string>
   <string name="sensors_category_title">Opzioni sensore</string>
-  <string name="smart_mute_title">Muto intelligente</string>
+  <string name="smart_mute_title">Smart mute</string>
   <string name="smart_mute_summary">Silenzia la chiamata in arrivo capovolgendo il dispositivo</string>
   <string name="smart_dialer_title">Smart Call</string>
-  <string name="smart_dialer_summary">Chiama il contatto posizionando il dispositivo vicino all\'orecchio</string>
+  <string name="smart_dialer_summary">Chiama automaticamente il numero composto avvicinando il dispositivo all\'orecchio</string>
 </resources>

@@ -66,6 +66,7 @@
   <string name="speed_dial_replace">Înlocuire</string>
   <string name="speed_dial_delete">Ștergeți</string>
   <string name="speed_dial_unassigned_dialog_title">Cheie neatribuită</string>
+  <string name="speed_dial_unassigned_dialog_message">Nicio acțiune de apel rapid nu este atribuită acestui număr \'<xliff:g id="number">%s</xliff:g>\'. Vreți să atribuiți o acțiune acum?</string>
   <string name="yes">Da</string>
   <string name="no">Nu</string>
   <string name="incall_vibration_category_title">Vibrare în apel</string>
@@ -74,7 +75,7 @@
   <string name="incall_vibrate_hangup_title">Vibrare la terminare apel</string>
   <string name="incall_vibrate_45_title">Vibrare la fiecare minut</string>
   <string name="incall_vibrate_45_summary">Vibrează la secunda 45 a fiecărui minut în timpul convorbirilor efectuate</string>
-  <string name="detailed_incall_info_title">Informaţii detaliate ale apelantului</string>
+  <string name="detailed_incall_info_title">Informații detaliate ale apelantului</string>
   <string name="video_call">Apel video</string>
   <string name="call_duration_active">Durata activă:</string>
   <string name="call_duration_call_out">Durată apel:</string>

@@ -18,8 +18,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <string name="nearby_places">Lugares cercanos</string>
   <string name="people">Personas</string>
-  <string name="lookup_settings_label">Búsqueda de números de telefóno</string>
-  <string name="lookup_settings_description">Buscar números de telefóno desconocidos</string>
+  <string name="lookup_settings_label">Búsqueda de números de teléfono</string>
+  <string name="lookup_settings_description">Buscar números de teléfono desconocidos</string>
   <string name="enable_forward_lookup_title">Búsqueda directa</string>
   <string name="enable_forward_lookup_summary">Muestra lugares cercanos cuando se busca en el marcador</string>
   <string name="enable_people_lookup_title">Búsqueda de personas</string>
@@ -96,6 +96,9 @@
   <string name="start_call_playback">Reproducir grabación</string>
   <string name="stop_call_playback">Detener</string>
   <string name="call_playback_error_message">Ocurrió un error al reproducir la grabación</string>
+  <string name="sensors_category_title">Opciones del sensor</string>
+  <string name="smart_mute_title">Silenciado inteligente</string>
+  <string name="smart_mute_summary">Silenciar una llamada entrante volteando el dispositivo</string>
   <string name="smart_dialer_title">Llamada inteligente</string>
-  <string name="smart_dialer_summary">Llamar automáticamente al contacto al acercar el dispositivo a tu oreja</string>
+  <string name="smart_dialer_summary">Llamar automáticamente al número marcado al acercar el dispositivo a la oreja</string>
 </resources>
