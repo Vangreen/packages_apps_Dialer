@@ -59,6 +59,12 @@ public class DialerSettingsActivity extends PreferenceActivity {
         TelephonyManager telephonyManager =
                 (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
+        final Header lookupSettingsHeader = new Header();
+        lookupSettingsHeader.titleRes = R.string.lookup_settings_label;
+        lookupSettingsHeader.summaryRes = R.string.lookup_settings_description;
+        lookupSettingsHeader.fragment = LookupSettingsFragment.class.getName();
+        target.add(lookupSettingsHeader);
+
         // Only show call setting menus if the current user is the primary/owner user.
         if (isPrimaryUser()) {
             // Show "Call Settings" if there is one SIM and "Phone Accounts" if there are more.
@@ -90,6 +96,12 @@ public class DialerSettingsActivity extends PreferenceActivity {
                 accessibilitySettingsHeader.intent = accessibilitySettingsIntent;
                 target.add(accessibilitySettingsHeader);
             }
+
+            Header speedDialHeader = new Header();
+            Intent speedDialIntent = new Intent("com.android.phone.action.SPEED_DIAL_SETTINGS");
+            speedDialHeader.titleRes = R.string.speed_dial_settings;
+            speedDialHeader.intent = speedDialIntent;
+            target.add(speedDialHeader);
         }
     }
 
